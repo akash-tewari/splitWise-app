@@ -1,0 +1,25 @@
+<form [formGroup]="expenseForm">
+    <div *ngFor="let expense of expenseArr.controls; let i=index" [formGroupName]="i">
+        <div formArrayName="expenseArr">
+            <div>
+                <label for="description">Description</label>
+                <input id="description" placeholder="Description" formControlName="description"/>
+            </div>
+            <div>
+                <label for="expense">Expense</label>
+                <input id="expense" placeholder="Expense" formControlName="expense"/>
+            </div>
+            <div>
+                <div>
+                    <label>split-equally</label>
+                    <input type="radio" />
+                </div>
+                <div>
+                    <label>custom</label>
+                    <input type="radio" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<button (click)="addExpense()">Add Expense</button>

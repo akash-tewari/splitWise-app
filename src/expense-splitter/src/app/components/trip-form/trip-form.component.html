@@ -1,0 +1,17 @@
+<form [formGroup]="trip" (submit)="submit()">
+    <h3>Trip Details</h3>
+    <div>
+        <label>Trip date</label>
+        <input placeholder="dd/mm/yyyy" type="date" formControlName="tripDate" />
+    </div>
+    <div>
+        <label>Trip Name</label>
+        <input placeholder="Trip Name" type="text" formControlName="tripName" />
+    </div>
+    <!-- <div>
+        <label>Total Expense</label>
+        <input placeholder="Total Expense" type="number" formControlName="totalExpense" />
+    </div> -->
+    <button [disabled]="trip.invalid" type="submit">Create Trip</button>
+
+</form>

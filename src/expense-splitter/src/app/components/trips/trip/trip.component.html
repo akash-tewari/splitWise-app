@@ -1,0 +1,12 @@
+<div *ngIf="trip">
+    <!-- <p>Trip Id: {{trip.tripId}}</p> -->
+    <p (click)="showTrip()">Trip Name: {{trip.tripName}}</p>
+    <p>Trip Date: {{trip.tripDate | Date}}</p>
+    <div><app-participant [trip]="trip"> <app-participant-form></app-participant-form> </app-participant>
+    </div>
+    <div>
+        <button routerLink='/trips/{{trip.tripId}}/add-participants'> Add Participants</button>
+    </div>
+    <!--add trip name and date in dd MMM yy-->
+    <!--Add Particants component here to dislay the list of participants and add participant button-->
+</div>
