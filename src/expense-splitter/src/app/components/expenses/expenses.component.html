@@ -1,1 +1,12 @@
-<p>expenses works!</p>
+<br>
+<h3>Expenses:</h3>
+<div>
+    <div *ngIf="tripDet">
+        <p *ngFor="let expense of tripDet.expenses;let i = index">{{expense.description}} ₹{{expense.amount}}</p>
+    </div>
+    <div>
+        
+        <button routerLink='/trips/{{tripDet.tripId}}/add-expenses' (click)="showTrip()" #AddButton> Add Expenses</button>
+        
+    </div>
+</div>

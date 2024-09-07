@@ -1,25 +1,71 @@
-<form [formGroup]="expenseForm">
-    <div *ngFor="let expense of expenseArr.controls; let i=index" [formGroupName]="i">
-        <div formArrayName="expenseArr">
-            <div>
-                <label for="description">Description</label>
-                <input id="description" placeholder="Description" formControlName="description"/>
-            </div>
-            <div>
-                <label for="expense">Expense</label>
-                <input id="expense" placeholder="Expense" formControlName="expense"/>
-            </div>
-            <div>
-                <div>
-                    <label>split-equally</label>
-                    <input type="radio" />
-                </div>
-                <div>
-                    <label>custom</label>
-                    <input type="radio" />
-                </div>
-            </div>
+<form [formGroup]="expenseForm" (submit)="addExpense()">
+    <div>
+        <div>
+            <label>Description</label>
+            <input id="description" placeholder="Description" formControlName="description" />
+        </div>
+        <div>
+            <label>Expense</label>
+            <input id="expense" placeholder="amount" formControlName="amount" />
         </div>
     </div>
+    <p *ngIf="trip">
+        <label>paid by</label>
+        <select formControlName="paye" (change)="getPayee(payeName.value)">
+            <option *ngFor="let participant of trip.particpants">
+                {{participant.name}}
+            </option>
+            <option>
+                custom
+            </option>
+        </select>
+
+
+        
+        <label>
+            and
+        </label>
+        <select #splitType (change)="getValue(splitType.value)">
+            <option>
+                split-equally-among all
+            </option>
+            <option>
+                split-among-equally
+            </option>
+            <option>
+                split-custom
+            </option>
+        </select>
+
+    </p>
+    <div formArrayName="splits">
+        <div *ngIf="isSplitAmong && expenseForm.get('splits')">
+            <p *ngFor="let split of splitArr.controls; let i=index" [formGroupName]="i">
+                <label>{{split.value['people']}}</label>
+                <input type="checkbox" (change)="onChecked($event,split.value,i)" formControlName="amount" />
+            </p>
+        </div>
+
+        <div *ngIf="isSplitCustom && expenseForm.get('splits')">
+            <p *ngFor="let split of splitArr.controls; let i=index" [formGroupName]="i">
+                <label>{{split.value['people']}}</label>
+                <input type="number" #custom formControlName="amount"  (change)="validateAmount()">
+                <button type="button" (click)="removeParicipant(i)">X</button>
+            </p>
+        </div>
+    </div>
+
+    <dialog open formArrayName="payees" *ngIf="trip && (payeName.value == 'custom')" #payeeForm>
+        <div *ngFor="let pay of payeeArr.controls;let i=index" [formGroupName]="i">
+            <label>
+                {{pay.value['name']}}
+            </label>
+            <input type="text" formControlName="payment">
+        </div>
+        <button type="button" (click)="addPayees();payeeForm.remove()">Add payees</button>
+    </dialog>
+    
+    <button type="submit" [disabled]="(sum != amountVal.value) || validateForm()">Add Expense</button>
+
+    
 </form>
-<button (click)="addExpense()">Add Expense</button>

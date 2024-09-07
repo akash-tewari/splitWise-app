@@ -18,6 +18,7 @@ import { environment } from 'src/environment';
 import { ParticipantComponent } from './components/trips/trip/participant/participant.component';
 import { DatePipe } from './pipes/date.pipe';
 import { ExpensesComponent } from './components/expenses/expenses.component';
+import { SplitComponent } from './components/split/split.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { ExpensesComponent } from './components/expenses/expenses.component';
     TripComponent,
     ParticipantComponent,
     DatePipe,
-    ExpensesComponent
+    ExpensesComponent,
+    // SplitComponent
   ],
   imports: [
     BrowserModule,

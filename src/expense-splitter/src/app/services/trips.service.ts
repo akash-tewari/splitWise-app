@@ -7,7 +7,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 // import * as firebase from 'firebase/compat';
 import * as firebase from 'firebase/firestore';
 import { collection, getDocs } from "firebase/firestore";
-import { FormArray } from '@angular/forms';
+import { FormArray, FormGroup } from '@angular/forms';
 
 
 
@@ -46,9 +46,11 @@ export class TripsService {
 
   }
 
-  // addExpenseToTrip(tripId: string, expense: expense): Observable<void>{
-
-  // }
+  addExpenseToTrip(tripId: string, expense: FormGroup): Observable<void>{
+    return from(this.firestore.collection('trips').doc(tripId).update({
+      expenses:firebase.arrayUnion(...[expense.value])
+    }))
+  }
 
   // settleTrip(tripId: string): Observable<any>{
 

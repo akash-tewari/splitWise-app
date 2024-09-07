@@ -2,6 +2,6 @@ import { FormControl } from "@angular/forms";
 import { Expense } from "./expense.model";
 
 export type Participant={
-    name:string | null|FormControl;
+    name:string;
     phoneNumber:number|undefined|FormControl;
 };
