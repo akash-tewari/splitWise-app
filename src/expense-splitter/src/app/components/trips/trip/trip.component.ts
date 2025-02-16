@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription, switchMap } from 'rxjs';
 import { Trip } from 'src/app/models/tripDetails.model';
 import { TripsService } from 'src/app/services/trips.service';
+import { ParticipantFormComponent } from './participant/participant-form/participant-form.component';
+// import { ParticipantFormComponent } from './participant/participant-form/participant-form.component';
 
 @Component({
   selector: 'app-trip',
@@ -10,13 +12,16 @@ import { TripsService } from 'src/app/services/trips.service';
   styleUrls: ['./trip.component.scss']
 })
 export class TripComponent implements OnInit {
+
   trip!: Trip;
   private tripId!: string;
   private paramsSubscription$!: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private tripService: TripsService
+    private tripService: TripsService,
+    private route:Router,
+    private participant:ParticipantFormComponent
   ){}
 
   ngOnInit(): void {
@@ -31,6 +36,15 @@ export class TripComponent implements OnInit {
   }
   showTrip(){
     console.log(this.trip);
+  }
+
+  addExpenses()
+  {
+    this.route.navigateByUrl('/trips/'+this.trip.tripId+'/add-expenses');
+  }
+  addParticipants() {
+    this.participant.addParticipant();
+    this.route.navigateByUrl('/trips/'+this.trip.tripId+'/add-participants');
   }
 
 }

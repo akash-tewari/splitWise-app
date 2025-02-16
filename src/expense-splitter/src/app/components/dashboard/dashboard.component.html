@@ -1,6 +1,32 @@
-<h2>Expense-splitter App</h2>
-<app-trips></app-trips>
-<button routerLink="/add-trip">
-    Add Trip
-</button>
+<mat-toolbar>
+    <div class="sidenav-content">
+        <button mat-icon-button class="example-icon"
+            aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <span>Expense Splitter</span>
+</mat-toolbar>
+<div class="body">
+    <mat-drawer-container class="example-container" autosize>
+        <mat-drawer #drawer class="example-sidenav" mode="side">
+          <p>Auto-resizing sidenav</p>
+          <!-- @if (showFiller) {
+            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+          } -->
+          <button (click)="shouldRun = !shouldRun" mat-raised-button>
+            Toggle extra text
+          </button>
+        </mat-drawer>
+      
+        <div class="example-sidenav-content">
+          <button type="button" mat-button >
+            Toggle sidenav
+          </button>
+        </div>
+      
+      </mat-drawer-container>
+      
+    <router-outlet *ngIf="!shouldRun"></router-outlet>
 
+</div>

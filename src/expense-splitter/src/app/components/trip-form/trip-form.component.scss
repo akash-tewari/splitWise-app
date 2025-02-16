@@ -1,0 +1,20 @@
+.d-block{
+    display: block;
+    
+}
+form{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form-container{
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+        background-color: rgb(241, 241, 241);
+        padding: 1rem;
+        box-shadow: 1.5px 1.5px;
+    }
+    
+}

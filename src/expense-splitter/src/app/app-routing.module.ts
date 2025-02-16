@@ -6,14 +6,17 @@ import { ParticipantFormComponent } from './components/trips/trip/participant/pa
 import { ExpenseFormComponent } from './components/expenses/expense-form/expense-form.component';
 import { TripsComponent } from './components/trips/trips.component';
 import { TripComponent } from './components/trips/trip/trip.component';
+import { ExpenseComponent } from './components/expenses/expense/expense.component';
 
 const routes: Routes = [
-  {path:'', component : DashboardComponent},
+  // {path:'', component : DashboardComponent},
   {path:'add-trip', component: TripFormComponent},
   { path: 'trips', component: TripsComponent},
   { path: 'trips/:id', component: TripComponent},
-  {path:'trips/:id/add-participants', component: ParticipantFormComponent},
-  {path:'trips/:id/add-expenses', component: ExpenseFormComponent}
+  {path:'trips/:id/add-expenses', component: ExpenseFormComponent},
+  { path: 'trips/:id/:expense', component: ExpenseComponent},
+  {path:'trips/:id/add-participants', component: ParticipantFormComponent}
+  
 
 ];
 

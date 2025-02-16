@@ -1,0 +1,52 @@
+<div *ngIf="expense">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title> {{expense.description}}</mat-card-title>
+            <mat-card-subtitle>Amount : ₹{{expense.amount}}</mat-card-subtitle>
+            <mat-card-title>
+                <h3>Splits</h3>
+            </mat-card-title>
+            <mat-card-subtitle>
+                <div>
+                    <p>
+                        <label *ngFor="let split of expense.splits">{{split.people}}
+                            (₹{{split.amount}})
+                        </label>
+                    </p>
+                </div>
+
+
+            </mat-card-subtitle>
+            <mat-card-title>
+                <h3>Payee</h3>
+            </mat-card-title>
+            <!-- <mat-card-subtitle>
+                <p *ngIf="!isPayeeArr()">{{expense.paye}}</p>
+                <p><label *ngFor="let payee of expense.paye"> {{payee.name}}({{payee.payment}})</label></p>
+                <small *ngFor="let split of splits">{{split}}<br></small>
+            </mat-card-subtitle> -->
+        </mat-card-header>
+        <mat-accordion>
+        <mat-expansion-panel  *ngFor="let payee of expense.paye;let i=index" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+                <mat-panel-title> 
+                    {{payee.name}}
+                </mat-panel-title>
+                <mat-panel-description>
+                    <!-- {{splits[i]}} -->
+                </mat-panel-description>
+            </mat-expansion-panel-header>
+            <p>Amount: ₹{{payee.payment}} </p>
+        </mat-expansion-panel>
+        </mat-accordion>
+        <!-- <mat-card-actions>
+            <button mat-raised-button (click)="addExpenses()" #AddButton> Add Expenses</button>
+            <button mat-raised-button (click)="addParticipants()" #AddParticipant> Add Participants</button>
+        </mat-card-actions> -->
+    </mat-card>
+    <!-- <p><label>Description : </label></p>
+    <p><label></label></p> -->
+
+
+
+</div>

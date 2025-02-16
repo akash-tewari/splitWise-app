@@ -9,14 +9,12 @@ import * as firebase from 'firebase/firestore';
 import { collection, getDocs } from "firebase/firestore";
 import { FormArray, FormGroup } from '@angular/forms';
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
 export class TripsService {
   trips:any;
+  expense:any;
   participants!:Participant[];
   private readonly idFieldObj = {idField: 'tripId'};
   constructor(private firestore: AngularFirestore) { }
@@ -44,6 +42,7 @@ export class TripsService {
       particpants : firebase.arrayUnion(...particpantList.value)
     }))
 
+    
   }
 
   addExpenseToTrip(tripId: string, expense: FormGroup): Observable<void>{
@@ -51,6 +50,8 @@ export class TripsService {
       expenses:firebase.arrayUnion(...[expense.value])
     }))
   }
+
+  
 
   // settleTrip(tripId: string): Observable<any>{
 

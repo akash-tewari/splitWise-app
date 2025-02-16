@@ -1,15 +1,20 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, Injectable, Input, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { from, Subscription } from 'rxjs';
 import { Participant } from 'src/app/models/participant.model';
 import { TripsService } from 'src/app/services/trips.service';
 
 @Component({
   selector: 'app-participant-form',
   templateUrl: './participant-form.component.html',
-  styleUrls: ['./participant-form.component.scss']
+  styleUrls: ['./participant-form.component.scss'],
 })
+
+@Injectable({
+  providedIn: 'root'
+})
+
 export class ParticipantFormComponent {
   tripId:string ="";
   tripId$!:Subscription;

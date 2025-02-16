@@ -1,43 +1,55 @@
 <form [formGroup]="expenseForm" (submit)="addExpense()">
-    <div>
+    <div class="expDet">
+        <mat-label>Expense</mat-label>
         <div>
-            <label>Description</label>
-            <input id="description" placeholder="Description" formControlName="description" />
+            
+            <mat-form-field class="input">
+                <input matInput id="description" placeholder="Description" formControlName="description" />
+            </mat-form-field>
         </div>
+        <mat-label>Amount</mat-label>
         <div>
-            <label>Expense</label>
-            <input id="expense" placeholder="amount" formControlName="amount" />
+            
+            <mat-form-field class="input">
+                <input matInput id="expense" placeholder="amount" formControlName="amount" />
+            </mat-form-field>
         </div>
+            
+        
     </div>
-    <p *ngIf="trip">
-        <label>paid by</label>
-        <select formControlName="paye" (change)="getPayee(payeName.value)">
-            <option *ngFor="let participant of trip.particpants">
+    <div *ngIf="trip">
+        <mat-label>paid by</mat-label>
+        <mat-form-field>
+        <mat-select formControlName="paye" (change)="getPayee(payeName.value)">
+            <mat-option *ngFor="let participant of trip.particpants" [value]="participant.name">
                 {{participant.name}}
-            </option>
-            <option>
+            </mat-option>
+            <mat-option [value]="payee">
                 custom
-            </option>
-        </select>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
 
         
         <label>
             and
         </label>
-        <select #splitType (change)="getValue(splitType.value)">
-            <option>
+        <mat-form-field>
+        <mat-select formControlName="splitType" #splitType (change)="getValue(splitType.value)" [disabled]="expenseForm.invalid">
+            <mat-option>
                 split-equally-among all
-            </option>
-            <option>
+            </mat-option>
+            <mat-option>
                 split-among-equally
-            </option>
-            <option>
+            </mat-option>
+            <mat-option>
                 split-custom
-            </option>
-        </select>
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
-    </p>
+    </div>
     <div formArrayName="splits">
         <div *ngIf="isSplitAmong && expenseForm.get('splits')">
             <p *ngFor="let split of splitArr.controls; let i=index" [formGroupName]="i">
@@ -49,23 +61,15 @@
         <div *ngIf="isSplitCustom && expenseForm.get('splits')">
             <p *ngFor="let split of splitArr.controls; let i=index" [formGroupName]="i">
                 <label>{{split.value['people']}}</label>
-                <input type="number" #custom formControlName="amount"  (change)="validateAmount()">
+                <input type="number" #custom formControlName="amount">
                 <button type="button" (click)="removeParicipant(i)">X</button>
             </p>
         </div>
     </div>
 
-    <dialog open formArrayName="payees" *ngIf="trip && (payeName.value == 'custom')" #payeeForm>
-        <div *ngFor="let pay of payeeArr.controls;let i=index" [formGroupName]="i">
-            <label>
-                {{pay.value['name']}}
-            </label>
-            <input type="text" formControlName="payment">
-        </div>
-        <button type="button" (click)="addPayees();payeeForm.remove()">Add payees</button>
-    </dialog>
+    <!-- <app-expense-dialog payeName="{{payeName}}" payeeArr="{{payeeArr}}"></app-expense-dialog> -->
     
-    <button type="submit" [disabled]="(sum != amountVal.value) || validateForm()">Add Expense</button>
+    <button mat-raised-button class="submitBtn" type="submit" [disabled]="validateForm()">Add Expense</button>
 
     
 </form>

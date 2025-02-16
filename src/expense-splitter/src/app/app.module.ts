@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,11 +13,17 @@ import { TripsComponent } from './components/trips/trips.component';
 import { TripComponent } from './components/trips/trip/trip.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from 'src/environment';
+import { environment } from './environment/environment';
 import { ParticipantComponent } from './components/trips/trip/participant/participant.component';
 import { DatePipe } from './pipes/date.pipe';
 import { ExpensesComponent } from './components/expenses/expenses.component';
 import { SplitComponent } from './components/split/split.component';
+import { ExpenseComponent } from './components/expenses/expense/expense.component';
+import { MaterialModule } from 'src/material/material.module';
+import { ExpenseDialogComponent } from './dialogs/expense-dialog/expense-dialog.component';
+
+// import { MaterialModule } from 'src/material/material.module';
+// import { MatCommonModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -32,19 +37,24 @@ import { SplitComponent } from './components/split/split.component';
     ParticipantComponent,
     DatePipe,
     ExpensesComponent,
+    ExpenseComponent,
+    ExpenseDialogComponent,
     // SplitComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatInputModule,
+    // MatInputModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    MaterialModule
+   
   ],
   providers: [],
   bootstrap: [AppComponent]
+  
 })
 export class AppModule { }

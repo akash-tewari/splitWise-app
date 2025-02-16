@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+// import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Trip } from 'src/app/models/tripDetails.model';
 import { TripsService } from 'src/app/services/trips.service';
@@ -14,6 +15,12 @@ import { TripsService } from 'src/app/services/trips.service';
 
 export class TripFormComponent {
   trip: FormGroup;
+  myFilter= (d: Date | any): any => {
+    const day = (new Date()).getDay();
+    // Prevent Saturday and Sunday from being selected.
+    return d > day;
+  };
+  
 
   constructor(
     private fb:FormBuilder,
@@ -36,4 +43,5 @@ export class TripFormComponent {
     
 
   }
+  
 }

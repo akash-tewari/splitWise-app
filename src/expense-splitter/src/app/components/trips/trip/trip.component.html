@@ -1,5 +1,4 @@
-<div *ngIf="trip">
-    <!-- <p>Trip Id: {{trip.tripId}}</p> -->
+<!-- <div *ngIf="trip">
     <p (click)="showTrip()">Trip Name: {{trip.tripName}}</p>
     <p>Trip Date: {{trip.tripDate | Date}}</p>
     <div><app-participant [trip]="trip"> <app-participant-form></app-participant-form> </app-participant>
@@ -9,6 +8,17 @@
     </div>
     <div><app-expenses [tripDet]="trip"></app-expenses></div>
     
-    <!--add trip name and date in dd MMM yy-->
-    <!--Add Particants component here to dislay the list of participants and add participant button-->
-</div>
+</div> -->
+
+<mat-card *ngIf="trip">
+    <mat-card-header>
+      <mat-card-title>Trip Details</mat-card-title>
+      <mat-card-subtitle>Trip Date: {{trip.tripDate | Date}}</mat-card-subtitle>
+      <mat-card-subtitle><app-participant [trip]="trip"> <app-participant-form></app-participant-form> </app-participant></mat-card-subtitle>
+      <mat-card-subtitle><app-expenses [tripDet]="trip"></app-expenses></mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+        <button mat-raised-button (click)="addExpenses()" #AddButton> Add Expenses</button>
+        <button mat-raised-button (click)="addParticipants()" #AddParticipant> Add Participants</button>
+    </mat-card-actions>
+  </mat-card>

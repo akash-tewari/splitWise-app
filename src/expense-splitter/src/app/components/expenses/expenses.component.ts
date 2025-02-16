@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Trip } from 'src/app/models/tripDetails.model';
 
 @Component({
@@ -8,10 +9,13 @@ import { Trip } from 'src/app/models/tripDetails.model';
 })
 export class ExpensesComponent {
   @Input() tripDet!:Trip;
+
+  constructor(private route:Router){}
+
   
-  showTrip()
-  {
-    console.log(this.tripDet);
-  }
+  // showTrip()
+  // {
+  //   console.log(this.tripDet);
+  // }
 
 }

@@ -1,0 +1,20 @@
+<!-- <dialog open formArrayName="payees" *ngIf="trip && (payeName.value == 'custom')" #payeeForm>
+    <div *ngFor="let pay of payeesArr.controls;let i=index" [formGroupName]="i">
+        <label>
+            {{pay.value['name']}}
+        </label>
+        <input type="text" formControlName="payment">
+    </div>
+    <button type="button" [disabled]="validatePayee()" (click)="addPayees();payeeForm.remove()">Add payees</button>
+</dialog> -->
+<h1 matDialogTitle>{{data.title}}</h1>
+
+<mat-dialog-content>
+    <!-- <div *ngFor="let paye of payeeArr"><mat-label>{{paye.name}}</mat-label><input matInput></div> -->
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button mat-button matDialogClose>Close dialog</button>
+    <button mat-button>Action</button>
+    
+</mat-dialog-actions>

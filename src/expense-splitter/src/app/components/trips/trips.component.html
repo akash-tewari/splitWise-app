@@ -1,1 +1,14 @@
-<p *ngFor="let trip of trips"><a [routerLink]="['/trips/', trip.tripId]">{{trip.tripName}}</a></p>
+<div class="list-container">
+
+    <div>
+
+        <mat-list dense>
+            <mat-list-item *ngFor="let trip of trips">
+                <li [routerLink]="['/trips/', trip.tripId]">{{trip.tripName}}</li>
+            </mat-list-item>
+        </mat-list>
+        <button mat-raised-button routerLink="/add-trip">
+            Add Trip
+        </button>
+    </div>
+</div>
