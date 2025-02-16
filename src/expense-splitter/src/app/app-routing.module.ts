@@ -9,15 +9,14 @@ import { TripComponent } from './components/trips/trip/trip.component';
 import { ExpenseComponent } from './components/expenses/expense/expense.component';
 
 const routes: Routes = [
-  // {path:'', component : DashboardComponent},
+  {path:'dashboard', component : DashboardComponent},
   {path:'add-trip', component: TripFormComponent},
   { path: 'trips', component: TripsComponent},
   { path: 'trips/:id', component: TripComponent},
   {path:'trips/:id/add-expenses', component: ExpenseFormComponent},
   { path: 'trips/:id/:expense', component: ExpenseComponent},
-  {path:'trips/:id/add-participants', component: ParticipantFormComponent}
-  
-
+  {path:'trips/:id/add-participants', component: ParticipantFormComponent},
+  {path: '', redirectTo: 'trips'}
 ];
 
 @NgModule({
