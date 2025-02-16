@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --deploy-url='splitWise-app/src/expense-splitter/dist/expense-splitter/'",
+    "build": "ng build --deploy-url='splitWise-app/src/expense-splitter/dist/expense-splitter/' --base-href='splitWise-app/src/expense-splitter/dist/expense-splitter/'",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
