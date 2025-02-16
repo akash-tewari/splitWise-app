@@ -16,7 +16,7 @@ const routes: Routes = [
   {path:'trips/:id/add-expenses', component: ExpenseFormComponent},
   { path: 'trips/:id/:expense', component: ExpenseComponent},
   {path:'trips/:id/add-participants', component: ParticipantFormComponent},
-  {path: '', redirectTo: 'trips'}
+  {path: '', redirectTo: '/trips'}
 ];
 
 @NgModule({
