@@ -332,14 +332,16 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
   splitEqually(arr: FormArray) {
     this.checked = false;
     this.sum = 0;
+    
     arr = new FormArray<any>([]);
     var participants = this.participants;
+    var shareOfEach=this.amountVal.value / participants.length;
     for (var i = 0; i < participants.length; i++) {
       arr.push(this.fb.group({
         people: participants[i].name,
-        amount: this.amountVal.value / participants.length
+        amount: shareOfEach
       }))
-      this.sum += this.amountVal.value / participants.length;
+      this.sum += shareOfEach;
     }
     if(this.sum<this.amountVal.value){
       arr.at(arr.length-1).setValue("amount" ,(this.amountVal.value / participants.length)+(this.amountVal.value-this.sum))

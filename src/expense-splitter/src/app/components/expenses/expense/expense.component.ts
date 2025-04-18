@@ -17,6 +17,7 @@ export class ExpenseComponent implements OnInit,OnDestroy {
   expense:any;
   splits!:string[];
   panelOpenState=false;
+  sum: number=0;
 
 
   constructor(private route:ActivatedRoute,private db:TripsService){}
@@ -44,13 +45,28 @@ export class ExpenseComponent implements OnInit,OnDestroy {
       }
       
     }
+    this.compareAmount();
     // if(this.isPayeeArr())
     //   this.splitPayments();
     // else
     //   this.splitPay();
   }
+
+
   roundToTwoDec(amount:number){
-    return Math.round((amount + Number.EPSILON) * 100) / 100
+    return Math.round((amount + Number.EPSILON) * 100) / 100;
+  }
+
+  compareAmount(){
+    var currVal=0;
+    var splitArr=this.expense.splits;
+    for(var i=0;i<this.expense.splits.length;i++){
+      currVal=splitArr.at(i).amount;
+      this.sum+=this.roundToTwoDec(currVal);
+    }
+    if(this.sum<this.expense.amount){
+      splitArr.at(splitArr.length-1).amount=splitArr.at(0).amount+(this.expense.amount-this.sum);
+    }
   }
 
 
