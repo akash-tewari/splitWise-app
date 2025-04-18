@@ -44,10 +44,13 @@ export class ExpenseComponent implements OnInit,OnDestroy {
       }
       
     }
-    if(this.isPayeeArr())
-      this.splitPayments();
-    else
-      this.splitPay();
+    // if(this.isPayeeArr())
+    //   this.splitPayments();
+    // else
+    //   this.splitPay();
+  }
+  roundToTwoDec(amount:number){
+    return Math.round((amount + Number.EPSILON) * 100) / 100
   }
 
 
@@ -55,44 +58,44 @@ export class ExpenseComponent implements OnInit,OnDestroy {
     return Array.isArray(this.expense.paye);
   }
 
-  splitPay(){
-    this.splits=[];
-    for(var i=0;i<this.expense.splits.length;i++){
-      if(this.expense.paye != this.expense.splits[i].people){
-        this.splits.push(this.expense.splits[i].people+' needs to pay ₹'+this.expense.amount/this.expense.splits.length);
-      }
-    }
-  }
+  // splitPay(){
+  //   this.splits=[];
+  //   for(var i=0;i<this.expense.splits.length;i++){
+  //     if(this.expense.paye != this.expense.splits[i].people){
+  //       this.splits.push(this.expense.splits[i].people+' needs to pay ₹'+this.expense.amount/this.expense.splits.length);
+  //     }
+  //   }
+  // }
 
-  splitPayments()
-  {
-    var diff=0;
-    this.splits=[];
+  // splitPayments()
+  // {
+  //   var diff=0;
+  //   this.splits=[];
 
-    for(var i =0;i<this.expense.splits.length;i++)
-    {
-      for(var j=0;j<this.expense.paye.length;j++)
-      {
-        if(this.expense.splits[i].people==this.expense.paye[j].name){
-          diff=this.expense.splits[i].amount-this.expense.paye[j].payment;
-          if(diff>0)
-          {
-            this.splits.push(this.expense.splits[i].people+' needs to pay '+diff);
-            console.log(this.expense.splits[i].people+' needs to pay',diff);
-            break;
-          }
-          else if(diff < 0){
-            this.splits.push(this.expense.splits[i].people+' owes '+-diff);
-            console.log(this.expense.splits[i].people+' owes',-diff);
-            break;
-          }
-        }
+  //   for(var i =0;i<this.expense.splits.length;i++)
+  //   {
+  //     for(var j=0;j<this.expense.paye.length;j++)
+  //     {
+  //       if(this.expense.splits[i].people==this.expense.paye[j].name){
+  //         diff=this.expense.splits[i].amount-this.expense.paye[j].payment;
+  //         if(diff>0)
+  //         {
+  //           this.splits.push(this.expense.splits[i].people+' needs to pay '+diff);
+  //           console.log(this.expense.splits[i].people+' needs to pay',diff);
+  //           break;
+  //         }
+  //         else if(diff < 0){
+  //           this.splits.push(this.expense.splits[i].people+' owes '+-diff);
+  //           console.log(this.expense.splits[i].people+' owes',-diff);
+  //           break;
+  //         }
+  //       }
           
-      }
-    }
+  //     }
+  //   }
      
     
-  }
+  // }
 
 
   

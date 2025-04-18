@@ -26,7 +26,8 @@ import { ExpenseDialogComponent } from 'src/app/dialogs/expense-dialog/expense-d
   },
   { provide: MAT_DIALOG_DATA, useValue: {} },
   // { provide: MdDialogRef, useValue: {} }, --> deprecated
-  { provide: MatDialogRef, useValue: {} } ]
+  { provide: MatDialogRef, useValue: {} } 
+  ]
 })
 
 
@@ -38,7 +39,8 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
   tripId!: string;
   tripID$!: Subscription;
   trip!: Trip;
-  splitType!: FormControl;
+  // splitType!:FormControl;
+  splitTypes: Array<String>=["split-equally-among-all","split-among-equally","split-custom"];
   payee!: FormControl;
   splits!: FormArray;
   amount!: FormControl;
@@ -89,8 +91,8 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
     this.expenseForm = this.fb.group({
       description: this.fb.control(null, Validators.required),
       amount: this.fb.control(null, Validators.required),
-      // splitType: this.splitType = this.fb.control(null, Validators.required),
-      paye: this.fb.control(null, Validators.required),
+      splitType: this.fb.control(null, Validators.required),
+      payee: this.fb.control(null, Validators.required),
       splits: this.fb.array([]),
       payees: this.fb.array([])
       // splitForm: this.splitForm = this.fb.group({
@@ -139,6 +141,9 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
   public get payeName() {
     return this.expenseForm.get('paye');
   }
+  public get splitTyp(){
+    return this.expenseForm.get('splitType');
+  }
 
   removeParicipant(i: number) {
     if (this.splitArr.length > 2) {
@@ -171,7 +176,7 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
         people: participants[i].name
       }));
     }
-    // return splits;
+    return this.splitArr;
   }
 
   initializePayees() {
@@ -188,8 +193,9 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
   validateForm() {
     var isPresent=false;
 
-    if (this.sum == this.amountVal.value && this.expenseForm.valid) {
+    if (this.expenseForm.valid) {
       return false;
+
     }
     
     return true;
@@ -248,12 +254,16 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
   getValue(value: string) {
     this.initializeSplit(this.participants)
     this.sum = 0;
+    console.log(2);
+    console.log(this.splitTyp);
+    
+    
     // this.splitForm.setControl("splits", this.splits);
 
 
 
 
-    if (value == 'split-equally-among all') {
+    if (this.splitTyp.value == 'split-equally-among-all') {
       this.isSplitAmong = false;
       this.isSplitCustom = false;
 
@@ -274,6 +284,7 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
 
   getPayee(payee: string) {
     this.expenseForm.setControl('payees', new FormArray<any>([]));
+    // console.log(payee);
     if (payee == "custom") {
       this.initializePayees();
       this.onClick();
@@ -329,6 +340,9 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
         amount: this.amountVal.value / participants.length
       }))
       this.sum += this.amountVal.value / participants.length;
+    }
+    if(this.sum<this.amountVal.value){
+      arr.at(arr.length-1).setValue("amount" ,(this.amountVal.value / participants.length)+(this.amountVal.value-this.sum))
     }
     return arr;
   }

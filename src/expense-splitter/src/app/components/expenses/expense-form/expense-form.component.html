@@ -20,7 +20,7 @@
     <div *ngIf="trip">
         <mat-label>paid by</mat-label>
         <mat-form-field>
-        <mat-select formControlName="paye" (change)="getPayee(payeName.value)">
+        <mat-select formControlName="payee" (change)="getPayee(payeName.value)">
             <mat-option *ngFor="let participant of trip.particpants" [value]="participant.name">
                 {{participant.name}}
             </mat-option>
@@ -36,18 +36,12 @@
             and
         </label>
         <mat-form-field>
-        <mat-select formControlName="splitType" #splitType (change)="getValue(splitType.value)" [disabled]="expenseForm.invalid">
-            <mat-option>
-                split-equally-among all
-            </mat-option>
-            <mat-option>
-                split-among-equally
-            </mat-option>
-            <mat-option>
-                split-custom
-            </mat-option>
-        </mat-select>
-    </mat-form-field>
+            <mat-select formControlName="splitType" #split (selectionChange)="getValue(splitTyp.value)">
+                <mat-option *ngFor="let type of splitTypes" [value]="type">
+                    {{type}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
 
     </div>
     <div formArrayName="splits">

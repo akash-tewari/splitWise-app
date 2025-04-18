@@ -10,7 +10,7 @@
                 <div>
                     <p>
                         <label *ngFor="let split of expense.splits">{{split.people}}
-                            (₹{{split.amount}})
+                            (₹{{roundToTwoDec(split.amount)}})
                         </label>
                     </p>
                 </div>
@@ -26,18 +26,31 @@
                 <small *ngFor="let split of splits">{{split}}<br></small>
             </mat-card-subtitle> -->
         </mat-card-header>
-        <mat-accordion>
-        <mat-expansion-panel  *ngFor="let payee of expense.paye;let i=index" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-                <mat-panel-title> 
-                    {{payee.name}}
-                </mat-panel-title>
-                <mat-panel-description>
-                    <!-- {{splits[i]}} -->
-                </mat-panel-description>
-            </mat-expansion-panel-header>
-            <p>Amount: ₹{{payee.payment}} </p>
-        </mat-expansion-panel>
+        <mat-accordion *ngIf="isPayeeArr()">
+            <mat-expansion-panel  *ngFor="let payee of expense.paye;let i=index" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> 
+                        {{payee.name}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <!-- {{splits[i]}} -->
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>Amount: ₹{{payee.payment}} </p>
+            </mat-expansion-panel>
+        </mat-accordion>
+        <mat-accordion *ngIf="!isPayeeArr() && expense.payee!=null">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+                <mat-expansion-panel-header>
+                    <mat-panel-title> 
+                        {{expense.payee}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <!-- {{splits[i]}} -->
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+                <p>Amount: ₹{{expense.amount}} </p>
+            </mat-expansion-panel>
         </mat-accordion>
         <!-- <mat-card-actions>
             <button mat-raised-button (click)="addExpenses()" #AddButton> Add Expenses</button>
