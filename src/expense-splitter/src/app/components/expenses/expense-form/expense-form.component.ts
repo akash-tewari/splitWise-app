@@ -139,7 +139,7 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
   }
 
   public get payeName() {
-    return this.expenseForm.get('paye');
+    return this.expenseForm.get('payee');
   }
   public get splitTyp(){
     return this.expenseForm.get('splitType');
@@ -336,11 +336,16 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
     arr = new FormArray<any>([]);
     var participants = this.participants;
     var shareOfEach=this.amountVal.value / participants.length;
+    
     for (var i = 0; i < participants.length; i++) {
-      arr.push(this.fb.group({
-        people: participants[i].name,
-        amount: shareOfEach
-      }))
+      
+      
+        arr.push(this.fb.group({
+          people: participants[i].name,
+          amount: shareOfEach
+        }))
+      
+      
       this.sum += shareOfEach;
     }
     if(this.sum<this.amountVal.value){

@@ -1,0 +1,97 @@
+
+mat-toolbar{
+  background-color: rgba(99, 96, 255, 0.644);
+  color: rgb(247, 247, 247);
+  height:9%;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  // opacity: 1;
+}
+mat-list-item:hover{
+
+  background-color: lightgrey;
+  
+}
+
+.drawerIcons{
+  cursor: pointer;
+  width: 100%;
+  display: block;
+  text-align: center;
+  padding:1rem 0;
+  position: relative;
+  top:1rem;
+}
+
+.drawerIcons:hover{
+  cursor: pointer;
+  background-color: oldlace;
+}
+
+mat-list-item{
+  
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+mat-list{
+  width:100%;
+}
+
+.example-container {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
+
+.example-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.example-sidenav {
+  width:12rem;
+  align-content:center;
+  background-color: rgb(221, 221, 221);
+}
+
+mat-sidenav-content{
+  width: 10rem;
+  margin: 0 !important;
+}
+
+.container{
+  height: 100%;
+  overflow: hidden;
+  align-self: center;
+
+}
+// .sidenav-container:active {
+//     display: flex;
+//     height: inherit;
+//     overflow: hidden;
+  
+  
+// }
+
+
+.body{
+ height:100%;
+ width:100%;
+ display: block;
+//    overflow: hidden;
+}
+.sidenav-content:active {
+  display: block;
+  // height: inherit;
+  // border: 1px solid;
+  // align-items: right;
+  // justify-content: right;
+  // overflow: hidden;
+}
+
+//   .sidenav {
+//     padding: 20px;
+//   }

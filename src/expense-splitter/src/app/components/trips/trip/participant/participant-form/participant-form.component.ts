@@ -36,6 +36,7 @@ export class ParticipantFormComponent {
       this.tripId=param['id'];
     });
     
+    
   }
   // ngOnDestroy(): void {
   //   this.participants.push(this.participantForms.value);

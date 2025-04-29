@@ -30,7 +30,7 @@
             <mat-expansion-panel  *ngFor="let payee of expense.paye;let i=index" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
                     <mat-panel-title> 
-                        {{payee.name}}
+                        <mat-icon>account_circle</mat-icon> {{payee.name}}
                     </mat-panel-title>
                     <mat-panel-description>
                         <!-- {{splits[i]}} -->
@@ -43,7 +43,7 @@
             <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
                     <mat-panel-title> 
-                        {{expense.payee}}
+                        <mat-icon aria-hidden="false">account_circle</mat-icon>{{expense.payee}}
                     </mat-panel-title>
                     <mat-panel-description>
                         <!-- {{splits[i]}} -->
@@ -54,7 +54,7 @@
         </mat-accordion>
         <!-- <mat-card-actions>
             <button mat-raised-button (click)="addExpenses()" #AddButton> Add Expenses</button>
-            <button mat-raised-button (click)="addParticipants()" #AddParticipant> Add Participants</button>
+            <button mat-raised-button [routerLink]="'/trips/'+tripId+'add-participants'" #AddParticipant> Add Participants</button>
         </mat-card-actions> -->
     </mat-card>
     <!-- <p><label>Description : </label></p>

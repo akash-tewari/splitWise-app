@@ -3,12 +3,15 @@
     <div>
 
         <mat-list dense>
-            <mat-list-item *ngFor="let trip of trips">
-                <li [routerLink]="['/trips/', trip.tripId]">{{trip.tripName}}</li>
+           
+            <mat-list-item *ngFor="let trip of trips" [routerLink]="['/trips/', trip.tripId]">
+                <mat-icon>group</mat-icon><li>{{trip.tripName}}<mat-divider></mat-divider></li>
             </mat-list-item>
+
         </mat-list>
-        <button mat-raised-button routerLink="/add-trip">
-            Add Trip
-        </button>
+        <app-trip-form></app-trip-form>
+        <!-- <button mat-raised-button routerLink="/add-trip">
+           + Add Trip
+        </button> -->
     </div>
 </div>

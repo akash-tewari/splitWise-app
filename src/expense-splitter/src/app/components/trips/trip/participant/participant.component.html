@@ -1,2 +1,2 @@
-<p>Participants:<span *ngFor="let participant of trip.particpants">{{participant.name}},</span></p>
+<p>Participants:<span *ngFor="let participant of trip.particpants"> <mat-icon aria-hidden="false">account_circle </mat-icon>{{participant.name}}</span></p>
 <app-participant-form *ngIf="tripId"></app-participant-form>

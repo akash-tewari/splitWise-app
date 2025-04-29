@@ -1,25 +1,28 @@
-<form [formGroup]="expenseForm" (submit)="addExpense()">
+<form *ngIf="trip" [formGroup]="expenseForm" (submit)="addExpense()">
     <div class="expDet">
-        <mat-label>Expense</mat-label>
+        
         <div>
             
             <mat-form-field class="input">
-                <input matInput id="description" placeholder="Description" formControlName="description" />
+                <mat-label>Expense Description</mat-label>
+                <input matInput id="description" formControlName="description" />
             </mat-form-field>
         </div>
-        <mat-label>Amount</mat-label>
+        
         <div>
             
             <mat-form-field class="input">
-                <input matInput id="expense" placeholder="amount" formControlName="amount" />
+                <mat-label>Amount</mat-label>
+                <input matInput id="expense"  formControlName="amount" />
             </mat-form-field>
         </div>
             
         
     </div>
     <div *ngIf="trip">
-        <mat-label>paid by</mat-label>
+        
         <mat-form-field>
+        <mat-label>paid by</mat-label>
         <mat-select formControlName="payee" (change)="getPayee(payeName.value)">
             <mat-option *ngFor="let participant of trip.particpants" [value]="participant.name">
                 {{participant.name}}
@@ -36,6 +39,7 @@
             and
         </label>
         <mat-form-field>
+            <mat-label>split type</mat-label>
             <mat-select formControlName="splitType" #split (selectionChange)="getValue(splitTyp.value)">
                 <mat-option *ngFor="let type of splitTypes" [value]="type">
                     {{type}}

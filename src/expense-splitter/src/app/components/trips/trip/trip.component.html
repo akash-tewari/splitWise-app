@@ -12,13 +12,15 @@
 
 <mat-card *ngIf="trip">
     <mat-card-header>
-      <mat-card-title>Trip Details</mat-card-title>
-      <mat-card-subtitle>Trip Date: {{trip.tripDate | Date}}</mat-card-subtitle>
-      <mat-card-subtitle><app-participant [trip]="trip"> <app-participant-form></app-participant-form> </app-participant></mat-card-subtitle>
+      <mat-card-title class="heading">{{trip.tripName}}</mat-card-title>
+      <mat-card-subtitle>Trip Date: {{trip.tripDate | Date}}
+        <mat-divider></mat-divider>
+      </mat-card-subtitle>
+      <mat-card-subtitle><app-participant [trip]="trip"><app-participant-form></app-participant-form></app-participant></mat-card-subtitle>
       <mat-card-subtitle><app-expenses [tripDet]="trip"></app-expenses></mat-card-subtitle>
     </mat-card-header>
     <mat-card-actions>
-        <button mat-raised-button (click)="addExpenses()" #AddButton> Add Expenses</button>
-        <button mat-raised-button (click)="addParticipants()" #AddParticipant> Add Participants</button>
+        <button mat-raised-button (click)="addExpenses()" #AddButton> + Add Expenses</button>
+        <button mat-raised-button (click)="addParticipants()" > + Add Participants</button>
     </mat-card-actions>
   </mat-card>

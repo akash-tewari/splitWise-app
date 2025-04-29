@@ -1,0 +1,44 @@
+<mat-toolbar>
+    <div class="sidenav-content">
+        <button mat-icon-button class="example-icon"
+            aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+    </div>
+    <span>Expense Splitter</span>
+</mat-toolbar>
+<div class="body">
+    <mat-drawer-container class="example-container" autosize>
+        <mat-drawer #drawer class="example-sidenav" mode="side">
+          <!-- <p>Auto-resizing sidenav</p> -->
+          <!-- @if (showFiller) {
+            <p>Lorem, ipsum dolor sit amet consectetur.</p>
+          } -->
+          <span class="drawerIcons" routerLink="" (click)="drawer.toggle()" mat-raised-button>
+            Home
+          </span>
+          <span class="drawerIcons" routerLink="/trips" (click)="drawer.toggle()" mat-raised-button>
+            My Trips
+          </span>
+          <span class="drawerIcons"  (click)="drawer.toggle()" mat-raised-button>
+            Expenses
+          </span>
+          <span class="drawerIcons"  (click)="drawer.toggle()" mat-raised-button>
+            Settings
+          </span>
+          <span class="drawerIcons" (click)="drawer.toggle()" mat-raised-button>
+            Log out
+          </span>
+        </mat-drawer>
+      
+        <!-- <div class="example-sidenav-content">
+          <button type="button" mat-button >
+            Toggle sidenav
+          </button>
+        </div> -->
+        <router-outlet *ngIf="!shouldRun"></router-outlet>
+      </mat-drawer-container>
+      
+    
+
+</div>

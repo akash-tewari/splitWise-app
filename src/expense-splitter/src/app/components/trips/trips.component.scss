@@ -6,7 +6,23 @@
         
     }
 }
+ 
+mat-icon{
+    position:absolute;
+}
+
+li{
+    padding-left: 2rem;
+    font-family: poppins;
+    
+}
+
 mat-list-item:hover{
 
-    background-color: lightgrey;
+    background-color: oldlace;
+
+    li{
+        transition: 90ms;
+        font-size: larger;
+    }
 }

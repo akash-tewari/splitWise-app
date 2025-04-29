@@ -7,14 +7,30 @@
     </div>
     <button type="button" [disabled]="validatePayee()" (click)="addPayees();payeeForm.remove()">Add payees</button>
 </dialog> -->
-<h1 matDialogTitle>{{data.title}}</h1>
+<h1 matDialogTitle>Add Trip</h1>
 
 <mat-dialog-content>
+    <form [formGroup]="tripForm">
+        <mat-form-field>
+            <mat-label>Trip Name</mat-label>
+            <input matInput placeholder="Trip Name" type="text" formControlName="tripName" />
+                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+                <mat-hint>Provide a name for the trip.</mat-hint>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Trip Date</mat-label>
+            <input matInput [matDatepickerFilter]="myFilter(picker.datepickerInput)" [matDatepicker]="picker"  formControlName="tripDate">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </form>
     <!-- <div *ngFor="let paye of payeeArr"><mat-label>{{paye.name}}</mat-label><input matInput></div> -->
 </mat-dialog-content>
 
 <mat-dialog-actions>
-    <button mat-button matDialogClose>Close dialog</button>
-    <button mat-button>Action</button>
+    <button mat-button (click)="closeDialog()">- Cancel</button>
+    <button mat-button [matDialogClose]="tripForm">+ Create Trip</button>
     
 </mat-dialog-actions>

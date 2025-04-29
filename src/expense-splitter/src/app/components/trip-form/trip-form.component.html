@@ -1,13 +1,8 @@
-<form [formGroup]="trip" (submit)="submit()">
+<button mat-raised-button (click)="openDialog()">+ Add Trip</button>
+<!-- <form [formGroup]="trip" (submit)="submit()">
     <div class="form-container">
         <h2>Trip Details</h2>
         <div class="d-block">
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Trip date</mat-label>
-                <input matInput placeholder="dd/mm/yyyy" type="date" formControlName="tripDate" />
-                <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-                <mat-hint>Date in dd/mm/yyyy</mat-hint>
-            </mat-form-field> -->
             <mat-form-field >
                 <mat-label>Choose a date</mat-label>
                 <input matInput [matDatepickerFilter]="myFilter(picker.datepickerInput)" [matDatepicker]="picker"  formControlName="tripDate">
@@ -24,11 +19,8 @@
                 <mat-hint>Provide a name for the trip.</mat-hint>
             </mat-form-field>
         </div>
-        <!-- <div>
-            <label>Total Expense</label>
-            <input placeholder="Total Expense" type="number" formControlName="totalExpense" />
-        </div> -->
+       
         <button mat-raised-button color="primary" [disabled]="trip.invalid" type="submit">Create Trip</button>
     </div>
 
-</form>
+</form> -->

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +22,7 @@ import { SplitComponent } from './components/split/split.component';
 import { ExpenseComponent } from './components/expenses/expense/expense.component';
 import { MaterialModule } from 'src/material/material.module';
 import { ExpenseDialogComponent } from './dialogs/expense-dialog/expense-dialog.component';
+import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
 
 // import { MaterialModule } from 'src/material/material.module';
 // import { MatCommonModule } from '@angular/material/core';
@@ -39,6 +41,7 @@ import { ExpenseDialogComponent } from './dialogs/expense-dialog/expense-dialog.
     ExpensesComponent,
     ExpenseComponent,
     ExpenseDialogComponent,
+    NavigationBarComponent,
     // SplitComponent
   ],
   imports: [
@@ -46,6 +49,7 @@ import { ExpenseDialogComponent } from './dialogs/expense-dialog/expense-dialog.
     AppRoutingModule,
     BrowserAnimationsModule,
     // MatInputModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule,
     AngularFireModule.initializeApp(environment.firebase),
