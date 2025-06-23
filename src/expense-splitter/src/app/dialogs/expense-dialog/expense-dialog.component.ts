@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Inject, Injectable, Input, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
+import { Trip } from 'src/app/models/tripDetails.model';
 
 @Component({
   selector: 'app-expense-dialog',
@@ -19,17 +20,19 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dial
 })
 
 export class ExpenseDialogComponent implements OnInit {
-tripForm:any;
-myFilter= (d: Date | any): any => {
-  const day = (new Date()).getDay();
-  // Prevent Saturday and Sunday from being selected.
-  return d > day;
-};
+tripForm!:FormGroup;
+
+// myFilter= (d: Date | any): any => {
+//   const day = (new Date()).getDay();
+//   // Prevent Saturday and Sunday from being selected.
+//   return d > day;
+// };
 
 ngOnInit(): void {
   this.tripForm=this.fb.group({
-    tripName:this.fb.control(null,Validators.required),
-    tripDate:this.fb.control(null,Validators.required)
+    tripDate:this.fb.control(null,Validators.required),
+    tripName:this.fb.control(null,Validators.required)
+    
   });
   //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
   //Add 'implements OnInit' to the class.
@@ -42,9 +45,9 @@ constructor(
   @Inject(MAT_DIALOG_DATA) public data: any, private fb:FormBuilder) {}
 
 
-  public get tripFrm(){
-    return this.tripForm;
-  }
+  // public get tripFrm(){
+  //   return this.tripForm;
+  // }
   public get name(){
     return this.tripForm.get("tripName");
   }

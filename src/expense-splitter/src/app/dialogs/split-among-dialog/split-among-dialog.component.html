@@ -1,0 +1,21 @@
+<mat-dialog-content *ngIf="splitForm" [formGroup]="splitForm">
+    <div formArrayName="splits">
+        <!-- <div *ngIf="isSplitAmong && expenseForm.get('splits')"> -->
+            <p *ngFor="let split of splitArr.controls; let i=index" [formGroupName]="i">
+                <!-- <label></label> -->
+                <mat-checkbox (change)="onChecked($event,split.value,i)">{{split.value['people']}}</mat-checkbox>
+            </p>
+        <!-- </div> -->
+
+        <!-- <div *ngIf="isSplitCustom && expenseForm.get('splits')">
+            <p *ngFor="let split of splitArr.controls; let i=index" [formGroupName]="i">
+                <label>{{split.value['people']}}</label>
+                <input type="number" #custom formControlName="amount">
+                <button type="button" (click)="removeParicipant(i)">X</button>
+            </p>
+        </div> -->
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="arr">Save</button>
+</mat-dialog-actions>

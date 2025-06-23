@@ -16,12 +16,12 @@ import { TripsService } from 'src/app/services/trips.service';
 })
 
 export class TripFormComponent {
-  trip!: FormGroup;
-  myFilter= (d: Date | any): any => {
-    const day = (new Date()).getDay();
-    // Prevent Saturday and Sunday from being selected.
-    return d > day;
-  };
+  trip!: Trip;
+  // myFilter= (d: Date | any): any => {
+  //   const day = (new Date()).getDay();
+  //   // Prevent Saturday and Sunday from being selected.
+  //   return d > day;
+  // };
   
 
   constructor(
@@ -46,7 +46,7 @@ export class TripFormComponent {
         }
           
       })}
-  submit(data:FormGroup){
+  submit(data:any){
     this.db.addTrip(data.value)
     .subscribe(id=>{
       this.router.navigateByUrl('/trips/'+id);

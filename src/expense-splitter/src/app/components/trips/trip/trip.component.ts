@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Subscription, switchMap } from 'rxjs';
+import { Subscription, switchMap, Timestamp } from 'rxjs';
 import { Trip } from 'src/app/models/tripDetails.model';
 import { TripsService } from 'src/app/services/trips.service';
 import { ParticipantFormComponent } from './participant/participant-form/participant-form.component';
+import { MatDialog } from '@angular/material/dialog';
+import { Participant } from 'src/app/models/participant.model';
 // import { ParticipantFormComponent } from './participant/participant-form/participant-form.component';
 
 @Component({
@@ -13,7 +15,9 @@ import { ParticipantFormComponent } from './participant/participant-form/partici
 })
 export class TripComponent implements OnInit {
 
-  trip!: Trip;
+  trip!: any;
+  // tripDate:any;
+  participantData!:Participant;
   private tripId!: string;
   private paramsSubscription$!: Subscription;
 
@@ -21,7 +25,8 @@ export class TripComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private tripService: TripsService,
     private route:Router,
-    private participant:ParticipantFormComponent
+    // private participant:ParticipantFormComponent,
+    private dialog:MatDialog
   ){}
 
   ngOnInit(): void {
@@ -29,10 +34,11 @@ export class TripComponent implements OnInit {
       switchMap((params: Params)=>{
       this.tripId = params["id"];
       return this.tripService.getTripById(this.tripId);
-    }))
+    })).subscribe(trip=> {this.trip = trip;
+      console.log(trip);
+    });
 
-    
-    .subscribe(trip=> {this.trip = trip});
+
   }
   showTrip(){
     console.log(this.trip);
@@ -43,8 +49,12 @@ export class TripComponent implements OnInit {
     this.route.navigateByUrl('/trips/'+this.trip.tripId+'/add-expenses');
   }
   addParticipants() {
-    this.participant.addParticipant();
-    this.route.navigateByUrl('/trips/'+this.trip.tripId+'/add-participants');
+    var dialogRef=this.dialog.open(ParticipantFormComponent);
+    dialogRef.afterClosed().subscribe(participant=>{
+      this.tripService.addParticipantsToTrip(this.tripId,participant);
+    });
+    // this.participant.addParticipant();
+    // this.route.navigateByUrl('/trips/'+this.trip.tripId+'/add-participants');
   }
 
 }

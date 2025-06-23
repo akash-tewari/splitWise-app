@@ -4,8 +4,8 @@
     <div *ngIf="tripDet">
        <!-- <mat-label class="expense" *ngFor="let expense of tripDet.expenses;let i = index" routerLink="/trips/{{tripDet.tripId}}/{{expense.description}}"> {{expense.description}} <p>₹{{expense.amount}}</p></mat-label> -->
        <mat-list dense>
-        <mat-list-item class="expense" *ngFor="let expense of tripDet.expenses;let i = index">
-            <mat-icon>attach_money</mat-icon><li routerLink="/trips/{{tripDet.tripId}}/{{expense.description}}">{{expense.description}} (₹{{expense.amount}})</li>
+        <mat-list-item class="expense" routerLink="/trips/{{tripDet.tripId}}/{{expense.description}}" *ngFor="let expense of tripDet.expenses;let i = index">
+            <mat-icon>attach_money</mat-icon><li >{{expense.description}} (₹{{expense.amount}})</li>
         </mat-list-item>
     </mat-list>
     </div>

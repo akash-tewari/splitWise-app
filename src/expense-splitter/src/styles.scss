@@ -39,7 +39,7 @@ html, body, app-root{
   display: block;
   height: 100%; 
   width: 100%;
-  overflow: hidden;
+  overflow: auto;
 }
 app-expense-form{
   display: flex;
@@ -49,5 +49,18 @@ app-expense-form{
   padding: 1rem;
   align-items: center;
 }
+
+app-trip{
+  display: block;
+}
+// app-participant-form{
+//   display: flex;
+//   height: 100%;
+//   align-content: center;
+//   justify-content: center;
+//   // padding: 1rem;
+//   align-items: center;
+//   overflow: hidden;
+// }
 
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

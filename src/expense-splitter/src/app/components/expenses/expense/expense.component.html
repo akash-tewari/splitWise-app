@@ -11,6 +11,7 @@
                     <p>
                         <label *ngFor="let split of expense.splits">{{split.people}}
                             (₹{{roundToTwoDec(split.amount)}})
+                            <!-- (₹{{split.amount}}) -->
                         </label>
                     </p>
                 </div>
@@ -27,16 +28,16 @@
             </mat-card-subtitle> -->
         </mat-card-header>
         <mat-accordion *ngIf="isPayeeArr()">
-            <mat-expansion-panel  *ngFor="let payee of expense.paye;let i=index" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+            <mat-expansion-panel  *ngFor="let payee of expense.payee;let i=index" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header>
                     <mat-panel-title> 
-                        <mat-icon>account_circle</mat-icon> {{payee.name}}
+                        <mat-icon>account_circle</mat-icon> {{payee.people}}
                     </mat-panel-title>
                     <mat-panel-description>
                         <!-- {{splits[i]}} -->
                     </mat-panel-description>
                 </mat-expansion-panel-header>
-                <p>Amount: ₹{{payee.payment}} </p>
+                <p>Amount: ₹{{payee.amount}} </p>
             </mat-expansion-panel>
         </mat-accordion>
         <mat-accordion *ngIf="!isPayeeArr() && expense.payee!=null">

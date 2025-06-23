@@ -38,12 +38,12 @@ export class DashboardComponent implements OnInit,OnDestroy {
   //     exitAnimationDuration,
   //   });
   // }
-  openDialog():void{
-    var tripDialog=this.dialog.open((ExpenseDialogComponent),{data:{tripName:this.tripName,tripDate:this.tripDate}});
-    tripDialog.afterClosed().subscribe(trip=>{
-      console.log(trip);
-    })
+  // openDialog():void{
+  //   var tripDialog=this.dialog.open((ExpenseDialogComponent),{data:{tripName:this.tripName,tripDate:this.tripDate}});
+  //   tripDialog.afterClosed().subscribe(trip=>{
+  //     console.log(trip);
+  //   })
     
-  }
+  // }
   
 }

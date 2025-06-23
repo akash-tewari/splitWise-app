@@ -1,24 +1,28 @@
-<form [formGroup]="participantForm" (submit)="saveParticipants()">
-    <h3>Participants</h3>
-    <div formArrayName="participants">
-        <div *ngFor="let participant of participantForms.controls; let i=index" [formGroupName]="i">
-            <div>
-                <label>Participant</label>
-                <input placeholder="Name" formControlName="name"/>
+<mat-dialog-content>
+<form class="participantForm" [formGroup]="participantForm">
+    
+    <div class="participantsArr" formArrayName="participants">
+        
+        <form class="participants" *ngFor="let participant of participantForms.controls; let i=index" [formGroupName]="i">
+            <mat-form-field>
+                <mat-label>Participant</mat-label>
+                <input matInput formControlName="name"/>
                 <small *ngIf="participantForms.get('name')?.hasError('pattern')">Enter a valid name</small>
-            </div>
-            <div>
-                <label>Phone Number</label>
-                <input type="number" placeholder="Contact No.." formControlName="phoneNumber" />
-            </div>
+            </mat-form-field>
+            <br>
+            <mat-form-field>
+                <mat-label>Phone Number</mat-label>
+                <input matInput type="number" formControlName="phoneNumber" />
+            </mat-form-field>
             <!-- <div>
                 <button (click)="removeParticipant(i)">Remove Participant</button>
             </div>   -->
-        </div>
+        </form>
     </div>  
-    <div>
-        <button type="button" (click)="addParticipant()">Add Participant</button>
-    </div>
-    <!-- <button *ngIf="participantForms.length>0" (click)="removeAllParticipant()">Remove All</button> -->
-    <button type="submit" [disabled]="participantForm.invalid" *ngIf="participantForms.length>0">Save</button>
 </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button type="button" (click)="addParticipant()">Add Participant</button>
+    <!-- <button *ngIf="participantForms.length>0" (click)="removeAllParticipant()">Remove All</button> -->
+    <button mat-raised-button [mat-dialog-close]="participantForms" [disabled]="participantForm.invalid" *ngIf="participantForms.length>0">Save</button>
+</mat-dialog-actions>

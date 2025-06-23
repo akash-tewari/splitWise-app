@@ -35,7 +35,7 @@ export class ExpenseComponent implements OnInit,OnDestroy {
   }
 
   getExpense(expenseName:string){
-    // console.log(this.trip.expenses);
+    console.log(this.trip.expenses);
     for(var i=0;i<this.trip.expenses.length;i++)
     {
       if(expenseName==this.trip.expenses.at(i).description)
@@ -64,14 +64,14 @@ export class ExpenseComponent implements OnInit,OnDestroy {
       currVal=splitArr.at(i).amount;
       this.sum+=this.roundToTwoDec(currVal);
     }
-    if(this.sum<this.expense.amount){
-      splitArr.at(splitArr.length-1).amount=splitArr.at(0).amount+(this.expense.amount-this.sum);
-    }
+    // if(this.sum<this.expense.amount){
+    //   splitArr.at(splitArr.length-1).amount=splitArr.at(0).amount+(this.expense.amount-this.sum);
+    // }
   }
 
 
   isPayeeArr(){
-    return Array.isArray(this.expense.paye);
+    return Array.isArray(this.expense.payee);
   }
 
   // splitPay(){

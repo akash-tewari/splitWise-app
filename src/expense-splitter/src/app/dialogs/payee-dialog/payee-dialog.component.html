@@ -1,0 +1,26 @@
+<mat-dialog-content *ngIf="payeeForm" [formGroup]="payeeForm">
+    <div formArrayName="payeeArr">
+        <!-- <div *ngIf="isSplitAmong && expenseForm.get('splits')"> -->
+        <p *ngFor="let payee of payees.controls; let i=index" [formGroupName]="i">
+            <!-- <label></label> -->
+            <mat-form-field>
+                <mat-label>{{payee.value['people']}}</mat-label>
+                <input matInput formControlName="amount" type="number"/>
+            </mat-form-field>
+            <button mat-button (click)="removePayee(i)">x</button>
+        </p>
+        <!-- </div> -->
+
+        <!-- <div *ngIf="isSplitCustom && expenseForm.get('splits')">
+            <p *ngFor="let split of splitArr.controls; let i=index" [formGroupName]="i">
+                <label>{{split.value['people']}}</label>
+                <input type="number" #custom formControlName="amount">
+                <button type="button" (click)="removeParicipant(i)">X</button>
+            </p>
+        </div> -->
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="payees">Save</button>
+    <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

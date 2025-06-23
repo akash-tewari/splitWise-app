@@ -73,17 +73,17 @@ export class ParticipantFormComponent {
   //   return this.participantForms.clear();
   // }
   
-  saveParticipants(){
-    console.log(this.participantForms.value);
-    this.db.addParticipantsToTrip(this.tripId,this.participantForms);
-    // this.addParticipant();
-    this.router.navigateByUrl("/trips/"+this.tripId);
-  }
-  // onInput(){
-  //   if(this.participantForms.controls[0].hasError('pattern')){
-  //     alert('Enter a valid name');
-  //   }
+  // saveParticipants(){
+  //   console.log(this.participantForms.value);
+  //   this.db.addParticipantsToTrip(this.tripId,this.participantForms);
+  //   // this.addParticipant();
+  //   this.router.navigateByUrl("/trips/"+this.tripId);
   // }
+  // // onInput(){
+  // //   if(this.participantForms.controls[0].hasError('pattern')){
+  // //     alert('Enter a valid name');
+  // //   }
+  // // }
 
   public get participantForms()
   {

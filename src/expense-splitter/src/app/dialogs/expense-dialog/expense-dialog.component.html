@@ -20,7 +20,7 @@
         <br>
         <mat-form-field>
             <mat-label>Trip Date</mat-label>
-            <input matInput [matDatepickerFilter]="myFilter(picker.datepickerInput)" [matDatepicker]="picker"  formControlName="tripDate">
+            <input matInput [matDatepicker]="picker" formControlName="tripDate" />
             <mat-hint>MM/DD/YYYY</mat-hint>
             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
@@ -31,6 +31,6 @@
 
 <mat-dialog-actions>
     <button mat-button (click)="closeDialog()">- Cancel</button>
-    <button mat-button [matDialogClose]="tripForm">+ Create Trip</button>
+    <button [disabled]="!tripForm.valid" mat-button [matDialogClose]="tripForm">+ Create Trip</button>
     
 </mat-dialog-actions>

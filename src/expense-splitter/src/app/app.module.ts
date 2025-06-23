@@ -23,6 +23,10 @@ import { ExpenseComponent } from './components/expenses/expense/expense.componen
 import { MaterialModule } from 'src/material/material.module';
 import { ExpenseDialogComponent } from './dialogs/expense-dialog/expense-dialog.component';
 import { NavigationBarComponent } from './components/navigation-bar/navigation-bar.component';
+import { SplitCustomDialogComponent } from './dialogs/split-custom-dialog/split-custom-dialog.component';
+import { SplitAmongDialogComponent } from './dialogs/split-among-dialog/split-among-dialog.component';
+import { PayeeDialogComponent } from './dialogs/payee-dialog/payee-dialog.component';
+import { LoginComponentComponent } from './components/login/login-component/login-component.component';
 
 // import { MaterialModule } from 'src/material/material.module';
 // import { MatCommonModule } from '@angular/material/core';
@@ -42,6 +46,10 @@ import { NavigationBarComponent } from './components/navigation-bar/navigation-b
     ExpenseComponent,
     ExpenseDialogComponent,
     NavigationBarComponent,
+    SplitCustomDialogComponent,
+    SplitAmongDialogComponent,
+    PayeeDialogComponent,
+    LoginComponentComponent,
     // SplitComponent
   ],
   imports: [
