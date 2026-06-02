@@ -4,8 +4,19 @@ mat-toolbar{
   color: rgb(247, 247, 247);
   height:9%;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  .userIcn{
+    width: 100%;
+    display:flex;
+    justify-content: right;
+  float: right;
+  }
+  .downArrow{
+    position: relative;
+    top: 6px;
+  }
   // opacity: 1;
 }
+
 mat-list-item:hover{
 
   background-color: lightgrey;
@@ -76,7 +87,11 @@ mat-sidenav-content{
   
 // }
 
-
+.userIcn{
+      
+    
+    
+}
 .body{
  height:100%;
  width:100%;

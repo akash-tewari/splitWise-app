@@ -10,7 +10,7 @@
     
 </div> -->
 
-<mat-card *ngIf="trip" (click)="showTrip()">
+<mat-card *ngIf="trip">
     <mat-card-header>
       <mat-card-title class="heading">{{trip.tripName}}</mat-card-title>
       <mat-card-subtitle>Trip Date: {{trip.tripDate.toDate().toDateString()}}

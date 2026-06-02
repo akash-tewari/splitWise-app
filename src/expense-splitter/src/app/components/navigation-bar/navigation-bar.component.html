@@ -1,4 +1,5 @@
-<mat-toolbar>
+<div class="container">
+<mat-toolbar *ngIf="userActive">
     <div class="sidenav-content">
         <button mat-icon-button class="example-icon"
             aria-label="Example icon-button with menu icon" (click)="drawer.toggle()">
@@ -6,6 +7,11 @@
         </button>
     </div>
     <span>Expense Splitter</span>
+    <div class="userIcn" *ngIf="userActive"><button mat-button [matMenuTriggerFor]="menu"><mat-icon>account_circle</mat-icon><span class="color:white">{{userName}}<mat-icon class="downArrow">arrow_drop_down</mat-icon></span>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>My account</button>
+      <button mat-menu-item (click)="logOutUser()">Log out</button>
+    </mat-menu></button></div>
 </mat-toolbar>
 <div class="body">
     <mat-drawer-container class="example-container" autosize>
@@ -17,7 +23,7 @@
           <span class="drawerIcons" routerLink="" (click)="drawer.toggle()" mat-raised-button>
             Home
           </span>
-          <span class="drawerIcons" routerLink="/trips" (click)="drawer.toggle()" mat-raised-button>
+          <span class="drawerIcons" routerLink="{{this.id}}/trips" (click)="drawer.toggle()" mat-raised-button>
             My Trips
           </span>
           <span class="drawerIcons"  (click)="drawer.toggle()" mat-raised-button>
@@ -41,4 +47,5 @@
       
     
 
+</div>
 </div>

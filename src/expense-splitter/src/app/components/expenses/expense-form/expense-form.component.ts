@@ -41,14 +41,14 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
   i: number = 0;
   tripId!: string;
   tripID$!: Subscription;
-  trip!: Trip;
+  trip!: any;
   // splitType!:FormControl;
   splitTypes: Array<String>=["split-equally-among-all","split-among-equally","split-custom"];
   payee!: FormControl;
   splits!: FormArray;
   amount!: FormControl;
   peoples: string[] | undefined;
-  // splitForm!: FormGroup;
+  tripName:string='';
   arr: Split[] = [];
   payees!: FormArray<any>;
   payment!: FormControl<any>;
@@ -57,6 +57,7 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
   isPayeeAdded: boolean = false;
   sum: number = 0;
   callbackTouchedFn: any;
+  trip$!:Subscription;
 
 
   constructor(private fb: FormBuilder,
@@ -90,6 +91,7 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
 
   ngOnInit(): void {
     this.payee = this.fb.control(null, Validators.required);
+    let active:boolean=false;
 
     this.expenseForm = this.fb.group({
       description: this.fb.control(null, Validators.required),
@@ -110,15 +112,23 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
     this.tripID$ = this.route.params.subscribe(params => {
 
       this.tripId = params['id'];
+      this.tripName=params['name'];
     });
 
-    this.db.getTripById(this.tripId).subscribe(_trip => {
-      this.trip = _trip;
-      this.participants = [...this.initializeParticipants()];
-      // this.payees = this.initializePayees();
-      // this.initializeSplit(this.initializeParticipants());
+    this.db.getTrips(this.tripId).subscribe(user=>{
+      if(user){
+        user.trips.find((trip:Trip)=>{
+          if(trip.tripName == this.tripName){
+            this.trip=trip;
+          }
+        });
+        this.participants=this.initializeParticipants();
+        active=true;
+      }
+      
+    }).closed=active;
 
-    });
+    
 
     // this.expenseForm.setControl('payee', this.payees);
 
@@ -215,8 +225,20 @@ export class ExpenseFormComponent implements OnInit, OnDestroy, OnChanges {
       {
         this.expenseForm.setControl('splits', this.splitAmong());
       }
-      this.db.addExpenseToTrip(this.tripId, this.expenseForm);
-      this.router.navigateByUrl('/trips/' + this.tripId);
+      this.trip$=this.db.getTrips(this.tripId).subscribe(user=>{
+        if(user){
+          let trips=user.trips;
+          let trip=trips.find((trip:any)=>{if(trip.tripName==this.tripName){return trip}});
+          if(trip.expenses== undefined)
+            trip['expenses']=[this.expenseForm.value];
+          else
+            trip.expenses.push(this.expenseForm.value);
+          this.db.addExpenseToTrip(this.tripId,user.trips);
+          this.trip$.unsubscribe();
+        }
+        
+      });
+      this.router.navigateByUrl(this.tripId+'/trips/' + this.tripName);
     }
   }
 

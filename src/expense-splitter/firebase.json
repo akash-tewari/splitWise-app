@@ -1,0 +1,29 @@
+{
+  "hosting": {
+    "public": "public",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  },
+  "emulators": {
+    "auth": {
+      "port": 9099,
+      "host":"127.0.0.1"
+    },
+    "firestore": {
+      "port": 8080
+    },
+    "database": {
+      "port": 9000
+    },
+    "ui": {
+      "enabled": true,
+      "port": 4500
+    },
+    "singleProjectMode": true
+  },
+   "project": "expense-splitter-app-58fd0"
+
+}

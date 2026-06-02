@@ -14,7 +14,7 @@ import { TripsComponent } from './components/trips/trips.component';
 import { TripComponent } from './components/trips/trip/trip.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { environment } from './environment/environment';
+import { firebaseConfig } from './environment/environment';
 import { ParticipantComponent } from './components/trips/trip/participant/participant.component';
 import { DatePipe } from './pipes/date.pipe';
 import { ExpensesComponent } from './components/expenses/expenses.component';
@@ -27,6 +27,11 @@ import { SplitCustomDialogComponent } from './dialogs/split-custom-dialog/split-
 import { SplitAmongDialogComponent } from './dialogs/split-among-dialog/split-among-dialog.component';
 import { PayeeDialogComponent } from './dialogs/payee-dialog/payee-dialog.component';
 import { LoginComponentComponent } from './components/login/login-component/login-component.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AngularFireAuth, AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { HttpClientModule } from '@angular/common/http';
+// import { TestAppComponent } from './backend_code/test-app/test-app.component';
+
 
 // import { MaterialModule } from 'src/material/material.module';
 // import { MatCommonModule } from '@angular/material/core';
@@ -50,9 +55,11 @@ import { LoginComponentComponent } from './components/login/login-component/logi
     SplitAmongDialogComponent,
     PayeeDialogComponent,
     LoginComponentComponent,
+    SignUpComponent,
     // SplitComponent
   ],
   imports: [
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -60,8 +67,9 @@ import { LoginComponentComponent } from './components/login/login-component/logi
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireModule.initializeApp(firebaseConfig),
     AngularFirestoreModule,
+    AngularFireAuthModule,
     MaterialModule
    
   ],

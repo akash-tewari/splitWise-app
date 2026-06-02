@@ -1,0 +1,55 @@
+.googleIcon{
+    background-image: url(https://cdn1.iconfinder.com/data/icons/google-s-logo/150/Google_Icons-09-512.png);
+    background-size: 2rem;
+    background-position: center;
+    
+}
+p{
+    align-items: center;
+}
+
+form{
+    height: 100%;
+    text-align: center;
+    /* vertical-align: middle; */
+    place-content: center;
+    justify-content: center;
+    display: grid;
+}
+
+.formContent{
+    border: 1px solid;
+    border-radius: 0.5rem;
+    box-shadow: 4px 4px 4px 4px grey;
+    padding: 1rem;
+    width: fit-content;
+    display: grid;
+}
+
+.googleSignIn{
+    background-color: rgb(255, 149, 29);
+    .googleIcon{
+        height:2rem;
+        width: 2rem;
+        background-color: whitesmoke;
+    }
+}
+
+.logIn{
+    top:0.5rem;
+    background-color: rgba(108, 159, 218, 0.918);
+}
+h2{
+    position: relative;
+    bottom: 6px !important;
+    margin-bottom: 5px !important;
+
+        
+}
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+        height: 8px;
+}
+// .mat-mdc-form-field-subscript-wrapper mat-mdc-form-field-bottom-align ng-tns-c1205077789-1::before{
+//     display: flex !important;
+// }

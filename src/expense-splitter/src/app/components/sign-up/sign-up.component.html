@@ -1,0 +1,53 @@
+<div class="formContainer">
+    
+    <div class="formContent" (submit)="addUser()">
+        <h2>Sign Up</h2>
+    <mat-stepper [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="firstFormGroup">
+        <ng-template matStepLabel cdkFocusInitial>Email and Password</ng-template>
+        <form [formGroup]="firstFormGroup">
+    <mat-form-field>
+        <mat-label>Email/Phone</mat-label>
+        <input matInput type="email" formControlName="email">
+        <small class="text-danger" *ngIf="isInvalidEmailFormat() && emailId.dirty">Invalid email format!</small>
+    </mat-form-field>
+    
+    <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" formControlName="password">
+        <div *ngIf="password.dirty">
+        <small class="text-danger" *ngIf="!checkPasswordHasCaps(password.value)">must contain at least 1 uppercase character</small>
+        <small class="text-danger" *ngIf="!checkPasswordHasSpch(password.value)">must contain at least 1 special character</small>
+        <small class="text-danger" *ngIf="!checkPasswordHasNum(password.value)">must contain at least 1 number</small>
+        <small class="text-danger" *ngIf="!checkPasswordHasLowercase(password.value)">must contain at least 1 lowercase character</small>
+        <small class="text-danger" *ngIf="password.value.length<8">must have minimum 8 characters</small>
+        </div>
+    </mat-form-field>
+    </form>
+    <div>
+<button mat-button matStepperNext [disabled]="firstFormGroup.invalid">Next</button>
+</div>
+</mat-step>
+<mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel>Your Name</ng-template>
+    <form [formGroup]="secondFormGroup">
+        <mat-form-field>
+        <mat-label>first name</mat-label>
+        <input matInput type="text" formControlName="firstName">
+        </mat-form-field>
+        <mat-form-field>
+        <mat-label>last name</mat-label>
+        <input matInput type="text" formControlName="lastName">
+        
+        </mat-form-field>
+    </form>
+    <button mat-button matStepperPrevious> Back </button>
+    <button mat-button [disabled]="secondFormGroup.invalid" type="submit" (click)="addUser()"> Submit </button>
+</mat-step>
+    </mat-stepper>
+    <span>or</span>
+    <button mat-button class="googleSignIn"><mat-icon class="googleIcon"></mat-icon> Sign in with Google</button>
+    <p>already have an account? <a href="login">login</a></p>
+    </div>
+    </div>
+    <!-- <app-dashboard user="{{emailId.value}}"></app-dashboard> -->

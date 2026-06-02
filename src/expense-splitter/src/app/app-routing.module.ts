@@ -7,16 +7,21 @@ import { ExpenseFormComponent } from './components/expenses/expense-form/expense
 import { TripsComponent } from './components/trips/trips.component';
 import { TripComponent } from './components/trips/trip/trip.component';
 import { ExpenseComponent } from './components/expenses/expense/expense.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { LoginComponentComponent } from './components/login/login-component/login-component.component';
+import { authGuard } from './guardAuth/auth.guard';
+import { deactivateAuthGuard } from './deactivateGuard/auth.guard';
 
 const routes: Routes = [
-  {path:'dashboard', component : DashboardComponent},
-  {path:'add-trip', component: TripFormComponent},
-  { path: 'trips', component: TripsComponent},
-  { path: 'trips/:id', component: TripComponent},
-  {path:'trips/:id/add-expenses', component: ExpenseFormComponent},
-  { path: 'trips/:id/:expense', component: ExpenseComponent},
-  {path:'trips/:id/add-participants', component: ParticipantFormComponent, pathMatch:'full'},
-  {path: '', redirectTo: '/dashboard', pathMatch:'full'}
+  {path:'', component : DashboardComponent, canActivate:[authGuard]},
+  // {path:'add-trip', component: TripFormComponent},
+  { path: ':id/trips', component: TripsComponent, canActivate:[authGuard]},
+  { path: 'login', component: LoginComponentComponent, canActivate:[deactivateAuthGuard]},
+  { path: ':id/trips/:name', component: TripComponent},
+  {path:':id/trips/:name/add-expenses', component: ExpenseFormComponent},
+  { path: ':id/trips/:name/:expense', component: ExpenseComponent},
+  {path:':id/trips/:name/add-participants', component: ParticipantFormComponent, pathMatch:'full'},
+  {path: 'signUp', component:SignUpComponent, canActivate:[deactivateAuthGuard]}
 ];
 
 @NgModule({

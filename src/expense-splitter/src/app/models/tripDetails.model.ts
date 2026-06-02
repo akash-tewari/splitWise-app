@@ -7,7 +7,7 @@ import { DatePipe } from "@angular/common";
 export type Trip={
     tripId:string,
     tripDate: any,
-    tripName: FormControl<null>,
+    tripName: string,
     totalExpense?: number;
     particpants: Participant[];
     expenses: Expense[];
